@@ -1,0 +1,28 @@
+[package]
+name = "united_multilanguage_project"
+version = "0.1.0"
+authors = ["sensiarion <izertmi@gmail.com>"]
+edition = "2021"
+
+
+[lib]
+name = "united_multilanguage_project"
+crate-type = ["cdylib", "rlib"]
+
+[features]
+python = ["dep:pyo3"]
+js = ["dep:wasm-bindgen", "dep:console_error_panic_hook"]
+
+[dependencies]
+pyo3 = { version = "0.22.0", optional = true }
+wasm-bindgen = { version = "0.2.84", optional = true }
+console_error_panic_hook = { version = "0.1.7", optional = true }
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3.34"
+
+
+
+[profile.release]
+# Tell `rustc` to optimize for small code size.
+opt-level = "s"
